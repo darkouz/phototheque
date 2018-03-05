@@ -119,7 +119,7 @@ class User implements \Serializable, UserInterface
     /**
      * @return string
      */
-    public function getPlainPassword(): string
+    public function getPlainPassword()
     {
         return $this->plainPassword;
     }

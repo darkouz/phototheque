@@ -29,7 +29,7 @@ class Photo
     private $path;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={persist})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
      */
     private $tags;
 
