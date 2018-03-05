@@ -1,17 +1,3 @@
-# symfony-4-base-template
+# Phototheque
 
-Symfony 4 startup project.
-
-Dependencies installed :
-
-- server --dev
-- sec-checker
-- annotations
-- twig
-- debug
-- asset
-- doctrine
-- maker
-- orm-fixtures
-- form
-- validators
+An attempt to make an Pictures Manager with symfony 4
