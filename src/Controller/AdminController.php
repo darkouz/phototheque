@@ -12,17 +12,20 @@ class AdminController extends Controller
      */
     public function indexAction()
     {
+
+        $userRepo = $this->getDoctrine()->getRepository("App:User");
+        $userList = $userRepo->findAll();
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            "userList"=>$userList,
         ]);
     }
 
     /**
-     * @Route("/admin-add-photo" name="add_photo")
+     * @Route("/admin-add-photo", name="add_photo")
      */
     public function addPhotoAction(){
 
-        
+
 
 
     }
