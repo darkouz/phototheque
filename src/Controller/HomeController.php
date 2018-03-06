@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class HomeController extends Controller
@@ -25,7 +26,7 @@ class HomeController extends Controller
         if ($this->getUser() != null) {
             return $this->render("home/index.html.twig");
         } else {
-            return $this->redirectToRoute("user_login");
+            return $this->redirectToRoute("login");
         }
 
     }
@@ -34,7 +35,7 @@ class HomeController extends Controller
      * @param Request $request
      * @Route("/user-register", name="user_register")
      */
-    public function userRegisterAction(Request $request)
+    public function userRegisterAction(Request $request, TokenStorageInterface $tokenStorage)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -49,7 +50,7 @@ class HomeController extends Controller
 
             $token = new UsernamePasswordToken($user, null, "main", $user->getRoles());
 
-            $this->get("security.authentication_utils")->setToken($token);
+            $this->get("security.token_storage")->setToken($token);
 
             return $this->redirectToRoute("homepage");
         }
@@ -63,7 +64,7 @@ class HomeController extends Controller
 
     /**
      * @return mixed
-     * @Route("/user-login", name="user_login")
+     * @Route("/login", name="login")
      */
     public function userLoginAction()
     {

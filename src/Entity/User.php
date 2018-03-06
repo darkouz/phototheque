@@ -132,12 +132,17 @@ class User implements \Serializable, UserInterface
 
     /**
      * @param string $plainPassword
-     * @return User
+     *
      */
-    public function setPlainPassword(string $plainPassword): User
+    public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
         return $this;
+    }
+
+    public function getFullName(){
+
+        return $this->firstName." ". $this->name;
     }
 
 

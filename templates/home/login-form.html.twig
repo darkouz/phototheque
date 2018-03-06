@@ -4,11 +4,11 @@
 
     {% if error %}
         <div class="alert alert-danger">
-            {{ error.message}}
+            {{ error.messageKey}}
         </div>
     {% endif %}
 
-    <form method="post" action="{{ path('user_login') }}">
+    <form method="post" action="{{ path('login') }}">
         <div class="form-group">
             <label>Login</label>
             <input type="text" name="_username" class="form-control"
