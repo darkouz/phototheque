@@ -1,0 +1,43 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <div id="wrapper" class="toggled">
+        {{ parent() }}
+
+
+        <div id="page-content-wrapper">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>Nombres d'utilisateurs</th>
+                        </tr>
+                        <tr>
+                            <td>{{ userCount }}</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+                <div class="col-md-4">
+                    <table class="table table-bordered table-striped">
+                        <tr class="">
+                            <th>Nombres de photo</th>
+                        </tr>
+                        <tr>
+                            <td>{{ photoCount }}</td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+{% endblock %}

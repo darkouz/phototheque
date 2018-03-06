@@ -1,0 +1,30 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <div id="wrapper" class="toggled">
+        {{ parent() }}
+
+
+        <div id="page-content-wrapper">
+
+            <div class="row">
+                <table class="table table-bordered table-striped">
+                    <tr>
+                        <th>Name</th>
+                        <th>Mail</th>
+                        <th>Role</th>
+                    </tr>
+                    {% for user in userList %}
+                        <tr>
+                            <td> {{ user.fullName }} </td>
+                            <td> {{ user.email }} </td>
+                            <td> {{ user.role }} </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

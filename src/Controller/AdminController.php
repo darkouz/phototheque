@@ -10,23 +10,49 @@ class AdminController extends Controller
     /**
      * @Route("/admin", name="admin")
      */
-    public function indexAction()
+    public function adminIndexAction()
     {
 
         $userRepo = $this->getDoctrine()->getRepository("App:User");
         $userList = $userRepo->findAll();
-        return $this->render('admin/index.html.twig', [
-            "userList"=>$userList,
+        $userCount = count($userList);
+
+        $photoRepo = $this->getDoctrine()->getRepository("App:Photo");
+        $photoList = $photoRepo->findAll();
+        $photoCount = count($photoList);
+        return $this->render('admin/admin-index.html.twig', [
+
+            "userCount"=>$userCount,
+            "photoCount"=>$photoCount
+
         ]);
     }
 
     /**
-     * @Route("/admin-add-photo", name="add_photo")
+     * @Route("/admin-users",name="admin-users")
      */
-    public function addPhotoAction(){
+    public function adminUsersAction(){
 
-
-
+        $userRepo = $this->getDoctrine()->getRepository("App:User");
+        $userList = $userRepo->findAll();
+        return $this->render('admin/admin-users.html.twig', [
+            "userList"=>$userList,
+        ]);
 
     }
+
+    /**
+     * @Route("/admin-photos",name="admin-photos")
+     */
+    public function adminPhotosAction(){
+
+        $userRepo = $this->getDoctrine()->getRepository("App:Photo");
+        $photoList = $userRepo->findAll();
+        return $this->render('admin/admin-photo.html.twig', [
+
+        ]);
+
+    }
+
+
 }
