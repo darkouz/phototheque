@@ -21,7 +21,12 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        return $this->render("home/index.html.twig");
+
+        if ($this->getUser() != null) {
+            return $this->render("home/index.html.twig");
+        } else {
+            return $this->redirectToRoute("user_login");
+        }
 
     }
 
@@ -31,7 +36,6 @@ class HomeController extends Controller
      */
     public function userRegisterAction(Request $request)
     {
-
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
@@ -48,7 +52,6 @@ class HomeController extends Controller
             $this->get("security.authentication_utils")->setToken($token);
 
             return $this->redirectToRoute("homepage");
-
         }
 
         return $this->render("home/register-form.html.twig",
@@ -56,6 +59,22 @@ class HomeController extends Controller
                 "registerForm" => $form->createView()
             ]);
 
+    }
+
+    /**
+     * @return mixed
+     * @Route("/user-login", name="user_login")
+     */
+    public function userLoginAction()
+    {
+
+        $securityUtils = $this->get("security.authentication_utils");
+
+        return $this->render("home/login-form.html.twig",
+            [
+                "error" => $securityUtils->getLastAuthenticationError(),
+                "userName" => $securityUtils->getLastUsername()
+            ]);
     }
 
 
