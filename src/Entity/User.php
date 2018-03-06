@@ -47,6 +47,32 @@ class User implements \Serializable, UserInterface
     /**
      * @return mixed
      */
+
+    /**
+     * @var string
+     * @ORM\Column(name="role", type="string", length=30, nullable=false)
+     */
+    private $role;
+
+    /**
+     * @return string
+     */
+    public function getRole(): string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role = "ROLE_USER")
+    {
+        $this->role = $role;
+        return $this;
+    }
+
+
+
     public function getId()
     {
         return $this->id;
@@ -85,7 +111,7 @@ class User implements \Serializable, UserInterface
      */
     public function getName()
     {
-        return $this->name;
+        return ucfirst($this->name);
     }
 
     /**
@@ -103,7 +129,7 @@ class User implements \Serializable, UserInterface
      */
     public function getFirstName()
     {
-        return $this->firstName;
+        return ucfirst($this->firstName);
     }
 
     /**
@@ -202,7 +228,7 @@ class User implements \Serializable, UserInterface
      */
     public function getRoles()
     {
-        return ["ROLE_USER"];
+        return [$this->role];
     }
 
     /**

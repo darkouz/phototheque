@@ -40,6 +40,7 @@ class HomeController extends Controller
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
+        $user->setRole();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

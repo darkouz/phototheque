@@ -145,16 +145,21 @@ tag_id</ColNames>
       <DataType>varchar(128)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="42" parent="16" name="UNIQ_1483A5E9E7927C74">
+    <column id="42" parent="16" name="role">
+      <Position>6</Position>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="43" parent="16" name="UNIQ_1483A5E9E7927C74">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="43" parent="16" name="PRIMARY">
+    <key id="44" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="44" parent="16" name="UNIQ_1483A5E9E7927C74">
+    <key id="45" parent="16" name="UNIQ_1483A5E9E7927C74">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>UNIQ_1483A5E9E7927C74</UnderlyingIndexName>
     </key>
