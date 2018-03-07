@@ -1,0 +1,27 @@
+{% extends 'admin/admin-base.html.twig' %}
+
+{% block title %}Admin{% endblock %}
+
+{% block body %}
+    <div id="wrapper" class="toggled">
+        {{ parent() }}
+
+
+        <div id="page-content-wrapper">
+
+            {{ form(tagForm) }}
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Tag</th>
+                </tr>
+            {%  for tag in tagList %}
+                <tr>
+                    <td>{{ tag.name }}</td>
+                </tr>
+
+
+            {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
