@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository")
@@ -25,8 +26,16 @@ class Photo
 
     /**
      * @ORM\Column(name="path", type="string", length=250, unique=true, nullable=false)
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $path;
+
+
+    /**
+     * @ORM\Column(name="thumbnail", type="string", length=250, unique=true, nullable=false)
+     */
+    private $thumbnail;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tag", cascade={"persist"})
@@ -104,6 +113,25 @@ class Photo
     /**
      * @return mixed
      */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param mixed $thumbnail
+     * @return Photo
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->thumbnail = $thumbnail;
+        return $this;
+    }
+
+
+    /**
+     * @return mixed
+     */
     public function getTags()
     {
         return $this->tags;
@@ -135,6 +163,24 @@ class Photo
     {
         $this->createdAt = $createdAt;
         return $this;
+    }
+
+    /**
+     * @param Tag $tag
+     * @return $this
+     */
+    public function addTag(Tag $tag){
+
+        $this->tags[]= $tag;
+        return $this;
+    }
+
+    /**
+     * @param Tag $tag
+     */
+    public function removeTag(Tag $tag){
+
+        $this->tags->removeElement($tag);
     }
 
 

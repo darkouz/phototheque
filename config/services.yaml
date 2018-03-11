@@ -2,8 +2,11 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    photo_directory: '%kernel.project_dir%/public/uploads/photo'
+    thumbnail_directory: '%kernel.project_dir%/public/uploads/thumbnail'
 
 services:
+
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -32,3 +35,16 @@ services:
           - "@security.password_encoder"
         tags:
           - {name: doctrine.event_listener, event: prePersist}
+
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: '%photo_directory%'
+
+    App\Service\ThumbnailGetter:
+            arguments:
+                $targetDirectory: '%thumbnail_directory%'
+
+    App\DoctrineListener\PhotoUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }

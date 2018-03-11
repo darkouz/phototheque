@@ -1,10 +1,31 @@
 {% extends 'admin/admin-base.html.twig' %}
 
+{% block title %}Admin{% endblock %}
+
 {% block body %}
+    <div id="wrapper" class="toggled">
+        {{ parent() }}
+        <div id="page-content-wrapper">
+            {{ form(photoForm) }}
 
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Date de création</th>
+                    <th>Thumbnail</th>
+                    <th>Action</th>
+                </tr>
+            {% for photo in photoList %}
+                <tr>
+                    <td>{{ photo.name }}</td>
+                    <td>{{ photo.createdAt | date("d-m-Y") }}</td>
+                    <td><img src="{{ photo.thumbnail }}"></td>
+                    <td><button class="btn btn-danger">Delete</button></td>
+                </tr>
+
+            {% endfor %}
+            </table>
+
+        </div>
+    </div>
 {% endblock %}
-
-{% block title %}
-
-{% endblock %}
-
