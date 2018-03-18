@@ -1,7 +1,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
+    locale: 'fr'
     photo_directory: '%kernel.project_dir%/public/uploads/photo'
     thumbnail_directory: '%kernel.project_dir%/public/uploads/thumbnail'
 
@@ -43,6 +43,10 @@ services:
     App\Service\ThumbnailGetter:
             arguments:
                 $targetDirectory: '%thumbnail_directory%'
+
+    App\Service\ExifInfo:
+            arguments:
+                $thumbnailDirectory: '%thumbnail_directory%'
 
     App\DoctrineListener\PhotoUploadListener:
         tags:

@@ -31,7 +31,7 @@ class ThumbnailGetter
 
         }
 
-
+            return null;
 
     }
 
